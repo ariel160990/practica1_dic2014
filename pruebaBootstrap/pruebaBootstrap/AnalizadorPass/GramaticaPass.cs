@@ -80,9 +80,12 @@ namespace pruebaBootstrap
             RegexBasedTerminal minusñ = new RegexBasedTerminal("minusñ", "ñ");
 
             NonTerminal s0 = new NonTerminal("s0"),
-                        password = new NonTerminal("password");
+                        password = new NonTerminal("password"),
+                        esmayus = new NonTerminal("esmayus");
 
-            s0.Rule = password;
+            s0.Rule = esmayus + password + punto;
+
+
 
             password.Rule = password + arroba
                     | password + numeral
@@ -218,6 +221,34 @@ namespace pruebaBootstrap
                     | minusy
                     | minusz
                     | minusñ;
+
+            esmayus.Rule = mayusa
+                    | mayusb
+                    | mayusc
+                    | mayusd
+                    | mayuse
+                    | mayusf
+                    | mayusg
+                    | mayush
+                    | mayusi
+                    | mayusj
+                    | mayusk
+                    | mayusl
+                    | mayusm
+                    | mayusn
+                    | mayuso
+                    | mayusp
+                    | mayusq
+                    | mayusr
+                    | mayuss
+                    | mayust
+                    | mayusu
+                    | mayusv
+                    | mayusw
+                    | mayusx
+                    | mayusy
+                    | mayusz
+                    | mayusñ;
 
             this.Root = s0;
             

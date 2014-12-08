@@ -39,8 +39,18 @@ namespace pruebaBootstrap
                             if (an_pass.esValido(txtpass1.Text, gramatica_pass)) {
                                 Grammar gramatica_pass_eje = new GramaticaPass();
                                 string clave_encriptada = (string)an_pass.ejecutar(txtpass1.Text, gramatica_pass_eje);
-                                agregarUsuario(ndp[3], clave_encriptada);
-                                Response.Redirect("menu.aspx");
+                                if (clave_encriptada != null)
+                                {
+                                    Session["anio"] = ndp[0].ToString();
+                                    Session["ciclo"] = ndp[1].ToString();
+                                    Session["seccion"] = ndp[2].ToString();
+                                    Session["usuario"] = ndp[3].ToString();
+                                    agregarUsuario(ndp[3], clave_encriptada);
+                                    Response.Redirect("menu.aspx");
+                                }
+                                else {
+                                    Response.Redirect("paginaerror.aspx?mensaje=la contraseña no cumple con el patron");
+                                }
                             }
                         }else{
                             Response.Redirect("paginaerror.aspx?mensaje=Las contraseñas con coinciden");

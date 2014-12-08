@@ -8,41 +8,62 @@ namespace pruebaBootstrap
 {
     public class AccionesPass
     {
-        public object do_action(ParseTreeNode pt_node) { 
-            return action(pt_node);
+        int cant_numeral = 0;
+        int cant_arroba = 0;
+        int cant_numeros = 0;
+        int cant_caracteres = 0;
+        public object do_action(ParseTreeNode pt_node) {
+            object result = action(pt_node);
+            if (cant_numeral > 0 && cant_arroba > 0 && cant_numeros == 1 && cant_caracteres >= 10 && cant_caracteres <= 15) {
+                return result;
+            }
+            return null;
         }
 
         public object action(ParseTreeNode node) {
             object result = null;
             switch (node.Term.Name.ToString()) {
                 case "s0":{
-                    if (node.ChildNodes.Count == 1){
-                        result = action(node.ChildNodes[0]);
+                    if (node.ChildNodes.Count == 3){
+                        string cadena = "";
+                        cadena = (string)action(node.ChildNodes[0]);
+                        cadena = cadena +" "+ (string)action(node.ChildNodes[1]);
+                        cadena = cadena +" "+ (string)action(node.ChildNodes[2]);
+                        cant_caracteres = cant_caracteres + 2;
+                        result = cadena;
                     }
                     break;
                 }
                 case "password": {
                     if (node.ChildNodes.Count == 2) {
+                        cant_caracteres++;
                         result = (string)action(node.ChildNodes[0]) + " " +(string)action(node.ChildNodes[1]);
                     }
                     else if (node.ChildNodes.Count == 1) {
+                        cant_caracteres++;
                         result = action(node.ChildNodes[0]);
                     }
                     break;
                 }
-                case "arroba": {result = "+-¿=";break;}
-                case "numeral": {result = "*%&";break;}
+                case "esmayus": {
+                    if (node.ChildNodes.Count == 1) { 
+                        result = action(node.ChildNodes[0]);
+                    }
+                    break;
+                }
+                case "arroba": { result = "+-¿="; cant_arroba++; break; }
+                case "numeral": { result = "*%&"; cant_numeral++; break; }
                 case "punto": {result = "/\")?";break;}
-                case "num0": {result = "{";break;}
-                case "num1":{result = "¡";break;}
-                case "num2":{result = ":";break;}
-                case "num3":{result = "_";break;}
-                case "num4":{result = "^";break;}
-                case "num5":{result = "]";break;}
-                case "num6":{result = "[";break;}
-                case "num7":{result = "}";break;}
-                case "num8":{result = ",";break;}
-                case "num9":{result = ";";break;}
+                case "num0": { result = "{"; cant_numeros++; break; }
+                case "num1": { result = "¡"; cant_numeros++; break; }
+                case "num2": { result = ":"; cant_numeros++; break; }
+                case "num3": { result = "_"; cant_numeros++; break; }
+                case "num4": { result = "^"; cant_numeros++; break; }
+                case "num5": { result = "]"; cant_numeros++; break; }
+                case "num6": { result = "["; cant_numeros++; break; }
+                case "num7": { result = "}"; cant_numeros++; break; }
+                case "num8": { result = ","; cant_numeros++; break; }
+                case "num9": { result = ";"; cant_numeros++; break; }
                 case "mayusa": { result = "B"; break; }
                 case "mayusb": { result = "C"; break; }
                 case "mayusc": { result = "D"; break; }
