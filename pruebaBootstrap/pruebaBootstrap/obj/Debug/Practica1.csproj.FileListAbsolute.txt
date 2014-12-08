@@ -1,0 +1,6 @@
+C:\Users\Ariel\Documents\Visual Studio 2012\Projects\pruebaBootstrap\pruebaBootstrap\bin\Irony.dll
+C:\Users\Ariel\Documents\Visual Studio 2012\Projects\pruebaBootstrap\pruebaBootstrap\obj\Debug\Practica1.csprojResolveAssemblyReference.cache
+C:\Users\Ariel\Documents\Visual Studio 2012\Projects\pruebaBootstrap\pruebaBootstrap\bin\pruebaBootstrap.dll
+C:\Users\Ariel\Documents\Visual Studio 2012\Projects\pruebaBootstrap\pruebaBootstrap\bin\pruebaBootstrap.pdb
+C:\Users\Ariel\Documents\Visual Studio 2012\Projects\pruebaBootstrap\pruebaBootstrap\obj\Debug\pruebaBootstrap.dll
+C:\Users\Ariel\Documents\Visual Studio 2012\Projects\pruebaBootstrap\pruebaBootstrap\obj\Debug\pruebaBootstrap.pdb
