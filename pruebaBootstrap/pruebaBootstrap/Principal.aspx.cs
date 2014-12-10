@@ -42,8 +42,8 @@ namespace pruebaBootstrap
                                 if (clave_encriptada != null)
                                 {
                                     Session["anio"] = ndp[0].ToString();
-                                    Session["ciclo"] = ndp[1].ToString();
-                                    Session["seccion"] = ndp[2].ToString();
+                                    Session["ciclo"] =  ndp[1].ToString();
+                                    Session["seccion"] =  ndp[2].ToString();
                                     Session["usuario"] = ndp[3].ToString();
                                     agregarUsuario(ndp[3], clave_encriptada);
                                     Response.Redirect("menu.aspx");
@@ -69,6 +69,10 @@ namespace pruebaBootstrap
                         string clave_encriptada = (string)an_pass.ejecutar(txtpass1.Text, gramatica_pass_eje);
                         if (usr.password.Equals(clave_encriptada))
                         {
+                            Session["anio"] = ndp[0].ToString();
+                            Session["ciclo"] = ndp[1].ToString();
+                            Session["seccion"] = ndp[2].ToString();
+                            Session["usuario"] = ndp[3].ToString();
                             Response.Redirect("menu.aspx");
                         }
                         else {
