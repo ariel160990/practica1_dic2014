@@ -11,6 +11,56 @@ namespace pruebaBootstrap
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["anio"] = "2014";
+            Session["ciclo"] = "01";
+            Session["seccion"] = "125";
+            Session["usuario"] = "334455";
+            
+        }
+
+        protected void cmdCargarArchivo_Click(object sender, EventArgs e)
+        {
+            if (FileUpload1.HasFile)
+            {
+
+                System.IO.Stream s = FileUpload1.FileContent;
+                s.Position = 0;
+                byte[] bytes = new byte[s.Length];
+                int numBytetoRead = (int)s.Length;
+                int numbytread = 0;
+                while (numBytetoRead > 0)
+                {
+                    int n = s.Read(bytes, numbytread, 10);
+                    if (n == 0)
+                    {
+                        break;
+                    }
+                    numbytread += n;
+                    numBytetoRead -= n;
+                }
+
+                bool extension_de_uno = false;
+                string fileExtension = System.IO.Path.GetExtension(FileUpload1.FileName).ToLower();
+                if (fileExtension.Equals(".fpt"))
+                {
+                    extension_de_uno = false;
+                }
+                else {
+                    extension_de_uno = true;
+                }
+                if (extension_de_uno)
+                {
+                    //se analiza el archivo para una sola funcion
+                }
+                else { 
+                    //se analiza el archivo para varias funciones
+                }
+                string cadena = System.Text.Encoding.Default.GetString(bytes);
+            }
+            else {
+                Response.Redirect("paginaerror.aspx?mensaje=no se ha cagado un archivo.");
+            }
+
             
         }
     }

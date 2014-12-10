@@ -125,7 +125,15 @@
     <Compile Include="AnalizadorPassword\GramaticaPassword.cs" />
     <Compile Include="AnalizadorPass\AccionesPass.cs" />
     <Compile Include="AnalizadorPass\GramaticaPass.cs" />
+    <Compile Include="AnalizadorTransformacion\AccionesTransformacion.cs" />
+    <Compile Include="AnalizadorTransformacion\AnalizadorTransformacion.cs" />
+    <Compile Include="AnalizadorTransformacion\GramaticaTransformacion.cs" />
+    <Compile Include="Estructuras\Exp.cs" />
+    <Compile Include="Estructuras\ItemOperacion.cs" />
+    <Compile Include="Estructuras\ListaVariables.cs" />
+    <Compile Include="Estructuras\Monomio.cs" />
     <Compile Include="Estructuras\Usuario.cs" />
+    <Compile Include="Estructuras\Variable.cs" />
     <Compile Include="Maestra.Master.cs">
       <DependentUpon>Maestra.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
