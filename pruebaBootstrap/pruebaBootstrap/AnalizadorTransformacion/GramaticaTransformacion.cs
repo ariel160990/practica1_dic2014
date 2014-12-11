@@ -12,8 +12,8 @@ namespace pruebaBootstrap
         public GramaticaTransformacion() {
             RegexBasedTerminal carnet = new RegexBasedTerminal("carnet", "[0-9][0-9][0-9][0-9][0-9][0-9]");
             RegexBasedTerminal numero = new RegexBasedTerminal("numero", "[0-9]+");
-            RegexBasedTerminal correo = new RegexBasedTerminal("correo", "[_a-z0-9][_a-z0-9-]*@[_a-z0-9]+([a-z][a-z][a-z])");
-            RegexBasedTerminal id = new RegexBasedTerminal("id", "[a-z][a-z0-9_]*");
+            RegexBasedTerminal correo = new RegexBasedTerminal("correo", "[_a-z0-9][_a-z0-9-]*@[_a-z0-9.]+");
+            RegexBasedTerminal id = new RegexBasedTerminal("id", "(a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|y|z)[a-z0-9_]*");
 
             NonTerminal s0 = new NonTerminal("s0"),
                         items = new NonTerminal("items"),
@@ -29,7 +29,8 @@ namespace pruebaBootstrap
             items.Rule=items+ item
                     | item;
 
-            item.Rule = funcion + correo + carnet;
+            item.Rule = funcion + correo + carnet
+                    | ToTerm("var")+"("+id+")"+"="+exp;
 
             funcion.Rule = ToTerm("f") + "(" + "x" + ")" + "=" + polinomio;
 
@@ -41,7 +42,8 @@ namespace pruebaBootstrap
             monomio.Rule = exp + "x"+ "^" + exp 
                         | ToTerm("x")+"^"+exp
                         | exp + "x"
-                        | ToTerm("x");
+                        | ToTerm("x")
+                        | exp;
 
             exp.Rule = exp + "+" + exp
                     | exp + "-" + exp
@@ -55,7 +57,7 @@ namespace pruebaBootstrap
 
             RegisterOperators(1,"+","-");
             RegisterOperators(2, "*", "/");
-            RegisterOperators(1, "^");
+            RegisterOperators(3, "^");
 
             this.Root = s0;
         }

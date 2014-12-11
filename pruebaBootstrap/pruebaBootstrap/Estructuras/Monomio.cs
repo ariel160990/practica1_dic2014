@@ -8,10 +8,10 @@ namespace pruebaBootstrap
     public class Monomio
     {
         public int basee;
-        public string exponente;
+        public int exponente;
         public string op;
 
-        public Monomio(int bass, string expo,string opp) {
+        public Monomio(int bass, int expo,string opp) {
             basee = bass;
             exponente = expo;
             op = opp;

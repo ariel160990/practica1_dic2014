@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Irony.Parsing;
 
 namespace pruebaBootstrap
 {
@@ -22,7 +23,6 @@ namespace pruebaBootstrap
         {
             if (FileUpload1.HasFile)
             {
-
                 System.IO.Stream s = FileUpload1.FileContent;
                 s.Position = 0;
                 byte[] bytes = new byte[s.Length];
@@ -51,17 +51,31 @@ namespace pruebaBootstrap
                 if (extension_de_uno)
                 {
                     //se analiza el archivo para una sola funcion
+                    string cadena = System.Text.Encoding.Default.GetString(bytes);
+                    derivar(cadena);
                 }
                 else { 
                     //se analiza el archivo para varias funciones
+                    string cadena = System.Text.Encoding.Default.GetString(bytes);
+                    derivar(cadena);
                 }
-                string cadena = System.Text.Encoding.Default.GetString(bytes);
+                
             }
             else {
                 Response.Redirect("paginaerror.aspx?mensaje=no se ha cagado un archivo.");
             }
 
             
+            
+        }
+        public void derivar(string cadena) {
+            AnalizadorTransformacion analizador = new AnalizadorTransformacion();
+            Grammar gramatica = new GramaticaTransformacion();
+            if (analizador.esValido(cadena, gramatica)) {
+                Grammar gramatica_ejecutar = new GramaticaTransformacion();
+                analizador.ejecutar(cadena, gramatica_ejecutar);
+            }
+
         }
     }
 }
